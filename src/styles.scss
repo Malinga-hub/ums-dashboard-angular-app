@@ -42,11 +42,6 @@
   border-color: #020d4bbd;
 }
 
-.ant-btn-primary:hover {
-  background: #020d4b;
-  border-color: #020d4b;
-}
-
 
 .ant-btn-primary:active {
   background: #020d4bbd;
@@ -54,7 +49,6 @@
 }
 
 .ant-btn-primary:hover, .ant-btn-primary:focus {
-  color: #fff;
   background: #020d4b;
   border-color: #020d4b;
 }
@@ -95,4 +89,8 @@ button {
 
 .ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title::after {
   background-color: #020d4bbd;
+}
+
+.ant-spin-dot-item {
+  background-color: #565e65;
 }

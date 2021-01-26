@@ -17,6 +17,10 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { RegisterComponent } from './register/register.component';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
 
 
 registerLocaleData(en);
@@ -38,7 +42,11 @@ registerLocaleData(en);
     NzInputModule,
     NzButtonModule,
     NzMessageModule,
-    NzStepsModule
+    NzStepsModule,
+    NzGridModule,
+    NzSelectModule,
+    NzSpinModule,
+    NzAlertModule
 
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],

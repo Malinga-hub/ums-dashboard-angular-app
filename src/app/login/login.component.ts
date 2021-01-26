@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
           this.data = ShareService.parseObject(data)
           // set access token
           localStorage.setItem("ums_token", this.data.data.token)
-          this.message.success("login successfully", {nzDuration: environment.MESSAGE_DURATION})
+          this.message.success("login successfull", {nzDuration: environment.MESSAGE_DURATION})
 
         },
 

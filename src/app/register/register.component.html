@@ -22,18 +22,203 @@
       <!-- END STEPS -->
 
       <!-- STEPS CONTENT -->
-      <div class="steps-content">{{ index }}</div>
+      <nz-spin [nzSpinning]="this.isLoading" nzSize="large">
+      <div class="steps-content">
+        <form nz-form [formGroup]="registerForm">
+          <!-- first content -->
+          <div *ngIf="index == '1'">
+            <div nz-row>
+              <!-- email -->
+              <div nz-col nzSpan="10">
+                <nz-form-item >
+                  <nz-form-label
+                  [nzSm]="8"
+                  [nzXs]="24"
+                  nzRequired
+                  nzFor="email"
+                  >E-mail
+                </nz-form-label>
+                  <nz-form-control [nzErrorTip]="emailError">
+                    <nz-input-group nzPrefixIcon="mail">
+                      <input  nz-input placeholder="email address" formControlName="username"/>
+                    </nz-input-group>
+                    <ng-template #emailError let-control>
+                      <ng-container *ngIf="control.hasError('required')">
+                        Please input your email!
+                      </ng-container>
+                      <ng-container *ngIf="control.hasError('email')">
+                        Invalid email!
+                      </ng-container>
+                    </ng-template>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <!-- phone number -->
+              <div nz-col nzSpan="12">
+                <nz-form-item>
+                  <nz-form-label
+                  [nzSm]="8"
+                  [nzXs]="24"
+                  nzRequired
+                  nzFor="phoneNumber"
+                  >Phone Number
+                </nz-form-label>
+                  <nz-form-control [nzErrorTip]="phoneNumberError">
+                    <nz-input-group nzPrefixIcon="phone" [nzAddOnBefore]="phoneNumberPrefix">
+                      <ng-template #phoneNumberPrefix>
+                        <nz-select
+                          formControlName="phoneNumberPrefix"
+                          ngModel="260"
+                        >
+                          <nz-option
+                            nzLabel="+260"
+                            nzValue="260"
+                          ></nz-option>
+                        </nz-select>
+                      </ng-template>
+                      <input  nz-input type="text" placeholder="phone number" formControlName="phoneNumber"/>
+                      <ng-template #phoneNumberError let-control>
+                        <ng-container *ngIf="control.hasError('required')">
+                          Please input your phone number!
+                        </ng-container>
+                        <ng-container *ngIf="control.hasError('maxlength')">
+                          Invalid number of charecters!
+                        </ng-container>
+                        <ng-container *ngIf="control.hasError('pattern')">
+                          Invalid phone number!
+                        </ng-container>
+                      </ng-template>
+                    </nz-input-group>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+          </div>
+          <!-- second content -->
+          <div *ngIf="index == '2'">
+            <div nz-row>
+              <!-- firstName -->
+              <div nz-col nzSpan="10">
+                <nz-form-item >
+                  <nz-form-label
+                  [nzSm]="8"
+                  [nzXs]="24"
+                  nzRequired
+                  nzFor="firstName"
+                  >FisrtName
+                </nz-form-label>
+                  <nz-form-control [nzErrorTip]="fisrtNameError">
+                    <nz-input-group nzPrefixIcon="user" [nzAddOnAfter]="">
+                      <input  nz-input placeholder="fisrt name" formControlName="firstName"/>
+                    </nz-input-group>
+                    <ng-template #fisrtNameError let-control>
+                      <ng-container *ngIf="control.hasError('required')">
+                        Please input your first name!
+                      </ng-container>
+                      <ng-container *ngIf="control.hasError('pattern')">
+                        Invalid name!
+                      </ng-container>
+                    </ng-template>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <!-- lastName -->
+              <div nz-col nzSpan="10">
+                <nz-form-item >
+                  <nz-form-label
+                  [nzSm]="8"
+                  [nzXs]="24"
+                  nzRequired
+                  nzFor="lastName"
+                  >LastName
+                </nz-form-label>
+                  <nz-form-control [nzErrorTip]="lastNameError">
+                    <nz-input-group nzPrefixIcon="user" [nzAddOnAfter]="">
+                      <input  nz-input placeholder="last name" formControlName="lastName"/>
+                    </nz-input-group>
+                    <ng-template #lastNameError let-control>
+                      <ng-container *ngIf="control.hasError('required')">
+                        Please input your last name!
+                      </ng-container>
+                      <ng-container *ngIf="control.hasError('pattern')">
+                        Invalid name!
+                      </ng-container>
+                    </ng-template>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+            <div nz-row>
+              <!-- address -->
+              <div nz-col nzSpan="20">
+                <nz-form-item >
+                  <nz-form-label
+                  [nzSm]="4"
+                  [nzXs]="24"
+                  nzFor="address"
+                  >Address
+                </nz-form-label>
+                  <nz-form-control>
+                    <nz-input-group>
+                      <textarea rows="3" nz-input formControlName="address" placeholder="Address"></textarea>
+                    </nz-input-group>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+          </div>
+          <!-- third-content -->
+          <div *ngIf="index == '3'">
+              <div nz-row>
+                <!-- password -->
+                <div nz-col nzSpan="10">
+                  <nz-form-item>
+                    <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="password" nzRequired>Password</nz-form-label>
+                    <nz-form-control nzErrorTip="Please input your password!">
+                      <nz-input-group nzPrefixIcon="lock">
+                        <input nz-input type="password" id="password" formControlName="password" (ngModelChange)="updateConfirmValidator()" placeholder="password"/>
+                      </nz-input-group>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <!-- password confrim -->
+              <div nz-col nzSpan="10">
+                <nz-form-item>
+                  <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="checkPassword" nzRequired>Confirm</nz-form-label>
+                  <nz-form-control [nzErrorTip]="errorTpl">
+                    <nz-input-group nzPrefixIcon="lock">
+                      <input nz-input type="password" formControlName="checkPassword" id="checkPassword" placeholder="confirm password"/>
+                    </nz-input-group>
+                    <ng-template #errorTpl let-control>
+                      <ng-container *ngIf="control.hasError('required')">
+                        Please confirm your password!
+                      </ng-container>
+                      <ng-container *ngIf="control.hasError('confirm')">
+                        Passwords do not match!
+                      </ng-container>
+                    </ng-template>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      </nz-spin>
       <!-- END STEPS CONTENT -->
 
       <!-- STEPS ACTION -->
       <div class="steps-action">
+        <button nz-button nzType="default" (click)="resetForm()" [disabled]="this.isLoading">
+          <span>Reset</span>
+        </button>
         <button nz-button nzType="default" (click)="pre()" *ngIf="current > 0">
           <span>Previous</span>
         </button>
         <button nz-button nzType="default" (click)="next()" *ngIf="current < 2">
           <span>Next</span>
         </button>
-        <button nz-button nzType="primary" (click)="done()" *ngIf="current === 2">
+        <button nz-button nzType="primary" (click)="done()" *ngIf="current === 2" [disabled]="registerForm.invalid" [nzLoading]="this.isLoading">
           <span>Done</span>
         </button>
       </div>
@@ -41,5 +226,5 @@
       <br><br>
       <a (click)="goToLoginPage()">Back to Login</a>
     </div>
-  </div>
+    </div>
 </div>
